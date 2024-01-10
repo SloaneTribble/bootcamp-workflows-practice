@@ -44,24 +44,25 @@ jobs:
       with: 
         name: output
     - name: Set environment variable
+      shell: bash
       run: |
         OUTPUT=$(cat output.txt)
         echo "OUTPUT=$OUTPUT" >> "$GITHUB_ENV"
 
 
-  use-output-from-file:
-    runs-on: self-hosted
-    needs: upload-output
-    strategy: 
-      matrix:
-        number: [1,2,3,4,5,6,7,8,9,10]
-    steps:
-    - name: Download output
-      uses: actions/download-artifact@v3
-      with:
-        name: output
-    - name: Print output
-      shell: bash
-      run: |
-        value=`cat output.txt`
-        echo $value - ${{ matrix.number }}
+  # use-output-from-file:
+  #   runs-on: self-hosted
+  #   needs: upload-output
+  #   strategy: 
+  #     matrix:
+  #       number: [1,2,3,4,5,6,7,8,9,10]
+  #   steps:
+  #   - name: Download output
+  #     uses: actions/download-artifact@v3
+  #     with:
+  #       name: output
+  #   - name: Print output
+  #     shell: bash
+  #     run: |
+  #       value=`cat output.txt`
+  #       echo $value - ${{ matrix.number }}
