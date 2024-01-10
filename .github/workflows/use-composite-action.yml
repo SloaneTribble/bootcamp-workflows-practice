@@ -21,4 +21,4 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Use local workflow
-        uses: ./.github/workflows/getting-started.yml
+        uses: .github/workflows/getting-started.yml
