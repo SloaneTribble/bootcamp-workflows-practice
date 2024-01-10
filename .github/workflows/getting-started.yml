@@ -22,19 +22,32 @@ jobs:
       - name: Run a one-line script
         run: echo "${{ secrets.PASSWORD }}"
 
-  create-output:
+  upload-output:
     runs-on: self-hosted
-    # Map a step output to a job output
-    outputs:
-      output1: ${{ steps.step1.outputs.test }}
+  
     steps:
-    - id: step1
-      run: echo "test=hello" >> $GITHUB_OUTPUT
+    - shell: bash
+      run: echo "hello" >> output.txt
+    - name: Upload output
+      uses: actions/upload-artifact@v3
+      with:
+        name: output
+        path: output.txt
+
+
   use-output:
     runs-on: self-hosted
-    needs: create-output
+    needs: upload-output
     strategy: 
       matrix:
         number: [1,2,3,4,5,6,7,8,9,10]
     steps:
-    - run: echo ${{needs.create-output.outputs.output1}} - ${{ matrix.number }}
+    - name: Download output
+      uses: actions/download-artifact@
+      with:
+        name: output
+    - name: Print output
+      shell: bash
+      run: |
+        value=`cat output.txt`
+        echo $value - ${{ matrix.number }}
