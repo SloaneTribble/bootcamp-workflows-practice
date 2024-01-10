@@ -4,7 +4,7 @@ on:
 
 jobs:
   hello_world_job:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     name: A job to say hello
     steps:
       - uses: actions/checkout@v4
@@ -14,3 +14,8 @@ jobs:
           who-to-greet: 'Mona the Octocat'
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
+  
+  run_self_hosted:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: ./.github/workflows/getting-started.yml
