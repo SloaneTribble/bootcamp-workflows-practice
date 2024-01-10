@@ -46,7 +46,7 @@ jobs:
     - name: Set environment variable
       shell: bash
       run: |
-        OUTPUT=$(cat output.txt)
+        OUTPUT=`cat output.txt`
         echo "OUTPUT=${OUTPUT}" >> $GITHUB_ENV
 
 
