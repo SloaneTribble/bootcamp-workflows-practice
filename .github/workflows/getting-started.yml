@@ -15,7 +15,7 @@ jobs:
   # This workflow contains a single job called "simple"
   simple:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -23,7 +23,7 @@ jobs:
         run: echo "${{ secrets.PASSWORD }}"
 
   create-output:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     # Map a step output to a job output
     outputs:
       output1: ${{ steps.step1.outputs.test }}
@@ -31,7 +31,7 @@ jobs:
     - id: step1
       run: echo "test=hello" >> $GITHUB_OUTPUT
   use-output:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: create-output
     strategy: 
       matrix:
