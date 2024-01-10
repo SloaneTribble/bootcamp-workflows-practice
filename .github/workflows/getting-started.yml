@@ -27,7 +27,7 @@ jobs:
   
     steps:
     - shell: bash
-      run: echo "hello" >> output.txt
+      run: echo "hello" > output.txt
     - name: Upload output
       uses: actions/upload-artifact@v3
       with:
