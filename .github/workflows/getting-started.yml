@@ -53,6 +53,9 @@ jobs:
           echo "Error: output.txt not found."
           exit 1
         fi
+    - name: Use value
+      run: |
+        printf '%s\n' "$OUTPUT"
 
 
   # use-output-from-file:
