@@ -18,4 +18,7 @@ jobs:
   run_self_hosted:
     runs-on: ubuntu-latest
     steps:
-      - uses: ./.github/workflows/getting-started.yml
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Use local workflow
+        uses: ./.github/workflows/getting-started.yml
