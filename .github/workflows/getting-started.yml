@@ -21,3 +21,23 @@ jobs:
     steps:
       - name: Run a one-line script
         run: echo "${{ secrets.PASSWORD }}"
+
+  create-reusable-output:
+    runs-on: ubuntu-latest
+
+    outputs:
+      # Define name of output and its value
+      output: ${{ steps.setoutput.outputs.output-value }}
+
+    steps:
+      - name: Create string output to use in subsequent jobs
+        id: set-output
+        run: echo "Reusable output" >> $GITHUB_ENV
+
+  use-output:
+    runs-on: ubuntu-latest
+    needs: create-output
+
+    steps:
+      - name: Use output value
+        run: echo "The output value is ${{ needs.create-output.outputs.job-output }}" 
