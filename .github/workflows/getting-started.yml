@@ -34,8 +34,22 @@ jobs:
         name: output
         path: output.txt
 
+  add-output-to-env:
+    runs-on: self-hosted
+    needs: upload-output
 
-  use-output:
+    steps: 
+    - name: Download output
+      uses: actions/download-artifact@v3
+      with: 
+        name: output
+    - name: Set environment variable
+      run: |
+        OUTPUT=`cat output.txt`
+        echo "OUTPUT=$OUTPUT" >> $GITHUB_ENV
+
+
+  use-output-from-file:
     runs-on: self-hosted
     needs: upload-output
     strategy: 
