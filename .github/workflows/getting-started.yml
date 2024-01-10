@@ -47,7 +47,7 @@ jobs:
       shell: bash
       run: |
         OUTPUT=`cat output.txt`
-        echo "OUTPUT=${OUTPUT}" >> $GITHUB_ENV
+        echo "{OUTPUT}=${OUTPUT}" >> "$GITHUB_ENV"
 
 
   # use-output-from-file:
