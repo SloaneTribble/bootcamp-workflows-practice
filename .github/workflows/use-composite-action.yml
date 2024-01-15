@@ -11,7 +11,11 @@ jobs:
       - id: foo
         uses: SloaneTribble/composite-workflow@v1
         with:
+        # passing an input to composite-workflow@v1
           who-to-greet: 'Mona the Octocat'
+
+      # using output from step with id "foo";
+      # the action we call populates an input with name "random-number"
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
         shell: bash
   
