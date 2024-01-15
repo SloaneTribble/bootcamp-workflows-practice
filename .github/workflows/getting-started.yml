@@ -35,6 +35,7 @@ jobs:
         name: output
         path: output.txt
 
+  # download artifact named "output", corresponding to "output.txt", set as an env variable and then print it
   add-output-to-env:
     runs-on: self-hosted
     needs: upload-output
@@ -46,6 +47,7 @@ jobs:
         name: output
     - name: Set environment variable
       shell: bash
+      # Reads the content of output.txt and sets it as an environment variable
       run: |
         if [ -f "output.txt" ]; then
           OUTPUT=$(cat output.txt)
